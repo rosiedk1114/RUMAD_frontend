@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_template/fetchRecipeScreen.dart';
+import 'package:frontend_template/Questionnaire.dart';
 import 'package:frontend_template/searchScreen.dart';
 import 'package:frontend_template/userData.dart';
 
@@ -20,6 +20,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: _buildAppBar(),
       body: Container(
@@ -32,13 +36,21 @@ class _HomeState extends State<Home> {
             Expanded(
               child: ListView(
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 10, bottom: 20),
-                    child: Text(
-                      'Recipe Home',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
-                    ),
+                   Center(
+                     child: Container(
+                      margin: EdgeInsets.only(top: 10, bottom: 20),
+                      child: Text(
+                        'Recipe Home',
+                        style:
+                            TextStyle(fontSize: 36, fontWeight: FontWeight.w800),
+                      ),
+                                       ),
+                   ),  
+                  Image.asset(
+                    'assets/images/breakfast.jpeg',
+                    width: screenWidth,
+                    height: screenHeight * 0.6,
+                    fit: BoxFit.contain,
                   ),
                 ],
               ),
@@ -85,9 +97,17 @@ class _HomeState extends State<Home> {
         SizedBox(
           height: 40,
           width: 40,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset('assets/images/ankit.png'),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => userData()),
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset('assets/images/ankit.png'),
+            ),
           ),
         ),
       ]),

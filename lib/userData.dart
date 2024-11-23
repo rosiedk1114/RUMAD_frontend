@@ -7,7 +7,8 @@ class userData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: Container(
+      body: 
+      Container(
         padding: EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 20,
@@ -21,12 +22,27 @@ class userData extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(top: 50, bottom:20),
                     child: Text(
-                      'Recipes', 
+                      'User Recipes', 
                       style: TextStyle(
                         fontSize:30, 
                         fontWeight: FontWeight.w500
                       ),
                     ),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.food_bank),
+                    title: const Text('Recipe 1'),
+                    subtitle: const Text('Description'),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.food_bank),
+                    title: const Text('Recipe 2'),
+                    subtitle: const Text('Description'),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.food_bank),
+                    title: const Text('Recipe 3'),
+                    subtitle: const Text('Description'),
                   ),
                 ],
               ),

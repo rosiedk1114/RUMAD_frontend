@@ -24,16 +24,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Supabase Template',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      home: const AuthWrapper(),
       routes: {
         // Enter additional routes here
 
-        // '/': (context) => const AuthWrapper(),
-        '/home': (context) => const HomePage(),
+        //'/': (context) => const AuthWrapper(),
+        '/home': (context) => const Home(),
       },
     );
   }

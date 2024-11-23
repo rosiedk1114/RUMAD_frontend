@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,7 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 252, 177, 3),
       appBar: _buildAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -83,24 +85,30 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: const Color.fromARGB(255, 170, 208, 130),
+      backgroundColor: const Color.fromARGB(255, 252, 177, 3),
       elevation: 0,
       title: Row( 
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Icon(
             Icons.menu,
-            color: Color.fromARGB(255, 22, 73, 35),
+            color: Color.fromARGB(0, 22, 73, 35),
             size: 30,
           ),
-          const Text('Recipe Recommender'),
+          const Text(
+            'Recipe Recommender',
+            style: TextStyle(
+              fontSize:30, 
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           SizedBox(
             
             height: 40,
             width: 40,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset('assets/images/raccoon.jpeg'),
+              child: Image.asset('assets/images/ankit.png'),
             ),
           ),
         ]
