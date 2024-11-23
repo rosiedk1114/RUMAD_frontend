@@ -12,7 +12,7 @@ class ApiService {
     baseUrl = AppConfig.apiBaseUrl;
   }
 
-  // Basic ping that doesn"t need auth
+  // Basic ping that doesn't need auth
   Future<String> ping() async {
     try {
       final response = await http.get(Uri.parse("$baseUrl/ping"));
@@ -26,10 +26,8 @@ class ApiService {
   }
 
   // Authenticated ping that needs bearer token
-  Future<String> pingAuthenticated() async {
+  Future<Map<String, dynamic>> pingAuthenticated() async {
     try {
-      final accessToken =
-          Supabase.instance.client.auth.currentSession?.accessToken;
       if (accessToken == null) throw "No auth token";
 
       final response = await http.get(
@@ -44,7 +42,7 @@ class ApiService {
         return {
           "message": jsonResponse["message"],
           "user": jsonResponse["user"]["email"],
-        }.toString();
+        };
       }
       throw "Failed to ping authenticated endpoint";
     } catch (e) {

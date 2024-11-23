@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> _testAuthPing() async {
     try {
       final response = await apiService.pingAuthenticated();
-      setState(() => _response = 'Auth ping response: $response');
+      setState(() => _response = 'Auth ping response: ${response['message']}');
     } catch (e) {
       setState(() => _response = 'Error: $e');
     }
@@ -34,6 +34,11 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _signOut() async {
     await supabase.auth.signOut();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -52,6 +57,21 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            FutureBuilder(
+                future: apiService.pingAuthenticated(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  }
+                  if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  }
+                  if (snapshot.hasData) {
+                    final data = snapshot.data as Map<String, dynamic>;
+                    return Text('Welcome back, ${data['user']}!');
+                  }
+                  return const Text('No data');
+                }),
             Text(_response),
             const SizedBox(height: 16),
             ElevatedButton(
