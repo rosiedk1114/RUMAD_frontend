@@ -28,6 +28,8 @@ class _SignInPageState extends State<SignInPage> {
         email: _emailController.text,
         password: _passwordController.text,
       );
+
+      Navigator.of(context).popAndPushNamed("/home");
       // Catch type of account not found
     } on AuthException catch (_) {
       try {
@@ -35,6 +37,7 @@ class _SignInPageState extends State<SignInPage> {
 
         await supabase.auth.signUp(
             password: _passwordController.text, email: _emailController.text);
+            Navigator.of(context).popAndPushNamed("/home");
       } catch (e) {
         debugPrint('Error: $e');
       }
