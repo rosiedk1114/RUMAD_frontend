@@ -14,12 +14,11 @@ class Home extends StatelessWidget {
           ),
         child: Column(
           children: [
-            searchBox(),
             Expanded(
               child: ListView(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 50, bottom:20),
+                    margin: EdgeInsets.only(top: 10, bottom:20),
                     child: Text(
                       'Recipe Home', 
                       style: TextStyle(
@@ -38,33 +37,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget searchBox() {
-    return Container(
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20)
-        ),
-      child: const TextField(
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(0),
-          prefixIcon: Icon(
-            Icons.search, 
-            color: Color.fromARGB(255, 23, 123, 75), 
-            size: 20,
-          ),
-          prefixIconConstraints: BoxConstraints(
-            maxHeight: 20, 
-            minWidth: 25,
-          ),
-          border: InputBorder.none,
-          hintText: 'Search',
-          hintStyle: TextStyle(color: Color.fromARGB(255, 100, 138, 100)),
-        ),
-      ),
-    );
-  }
-  AppBar _buildAppBar() {
+   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: const Color.fromARGB(255, 170, 208, 130),
       elevation: 0,
@@ -76,7 +49,9 @@ class Home extends StatelessWidget {
             color: Color.fromARGB(255, 22, 73, 35),
             size: 30,
           ),
+          Text('Recipe Home'),
           SizedBox(
+            
             height: 40,
             width: 40,
             child: ClipRRect(
