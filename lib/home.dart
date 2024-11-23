@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_template/fetchRecipeScreen.dart';
+import 'package:frontend_template/searchScreen.dart';
+import 'package:frontend_template/userData.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) async {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,56 +26,71 @@ class Home extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 20,
-          ),
+        ),
         child: Column(
           children: [
             Expanded(
               child: ListView(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 10, bottom:20),
+                    margin: EdgeInsets.only(top: 10, bottom: 20),
                     child: Text(
-                      'Recipe Home', 
-                      style: TextStyle(
-                        fontSize:30, 
-                        fontWeight: FontWeight.w500
-                      ),
+                      'Recipe Home',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 239, 255, 221),
+      backgroundColor: const Color.fromARGB(255, 255, 223, 149),
     );
   }
 
-   AppBar _buildAppBar() {
+  AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: const Color.fromARGB(255, 170, 208, 130),
+      backgroundColor: const Color.fromARGB(255, 252, 177, 3),
       elevation: 0,
-      title: Row( 
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Icon(
-            Icons.menu,
-            color: Color.fromARGB(255, 22, 73, 35),
-            size: 30,
+      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Home()),
+            );
+          },
+          icon: Icon(Icons.home),
+        ),
+        IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Search()),
+            );
+          },
+          icon: Icon(Icons.search),
+        ),
+         IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => QuestionnaireScreen()),
+            );
+          },
+          icon: Icon(Icons.fastfood),
+        ),
+        SizedBox(
+          height: 40,
+          width: 40,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset('assets/images/ankit.png'),
           ),
-          Text('Recipe Home'),
-          SizedBox(
-            
-            height: 40,
-            width: 40,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset('assets/images/ankit.png'),
-            ),
-          ),
-        ]
-      ),
+        ),
+      ]),
     );
   }
 }

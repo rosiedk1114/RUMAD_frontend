@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class userData extends StatelessWidget {
-  const userData({super.key});
+class Search extends StatelessWidget {
+  const Search({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,13 @@ class userData extends StatelessWidget {
           ),
         child: Column(
           children: [
-            searchBox(),
             Expanded(
               child: ListView(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 50, bottom:20),
+                    margin: EdgeInsets.only(top: 10, bottom:20),
                     child: Text(
-                      'Recipes', 
+                      'Recipes Search', 
                       style: TextStyle(
                         fontSize:30, 
                         fontWeight: FontWeight.w500
@@ -30,7 +29,8 @@ class userData extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
+            searchBox(),
           ],
         ),
       ),
