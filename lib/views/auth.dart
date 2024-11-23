@@ -28,7 +28,18 @@ class _SignInPageState extends State<SignInPage> {
         email: _emailController.text,
         password: _passwordController.text,
       );
+      // Catch type of account not found
+    } on AuthException catch (_) {
+      try {
+        setState(() => _loading = true);
+
+        await supabase.auth.signUp(
+            password: _passwordController.text, email: _emailController.text);
+      } catch (e) {
+        debugPrint('Error: $e');
+      }
     } catch (e) {
+      debugPrint('Error: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error: ${e.toString()}')),
