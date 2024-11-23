@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:frontend_template/recipeScreen.dart';
 
 class QuestionnaireScreen extends StatefulWidget {
   @override
@@ -16,14 +17,14 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
   String answer4 = '';
 
   // submits answers, displays recipe if found
-  void submitAnswers() async {
-    Map<String, String> answers = {
-      'question1': answer1,
-      'question2': answer2,
-      'question3': answer3,
-      'question4': answer4,
-    };
-  }
+  // void submitAnswers() async {
+  //   Map<String, String> answers = {
+  //     'question1': answer1,
+  //     'question2': answer2,
+  //     'question3': answer3,
+  //     'question4': answer4,
+  //   };
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,12 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
 
             Center(
               child: ElevatedButton(
-                onPressed: submitAnswers,
+                onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const recipeScreen()),
+                );
+                },
                 child: Text('Get Recipe'),
               ),
             ),
